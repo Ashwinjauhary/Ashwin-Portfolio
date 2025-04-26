@@ -15,6 +15,120 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <style>
+      /* Animated Navbar Bottom Border */
+    .navbar::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, 
+            transparent 0%, 
+            var(--accent-color) 50%, 
+            transparent 100%);
+        animation: borderFlow 3s linear infinite;
+        background-size: 200% auto;
+    }
+
+    @keyframes borderFlow {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+    }
+
+    /* Profile Photo Glowing Border */
+    .profile-photo {
+        position: relative;
+        z-index: 1;
+    }
+
+    .profile-photo::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(45deg, 
+            var(--accent-color), 
+            var(--bg-medium), 
+            var(--accent-color));
+        border-radius: 50%;
+        z-index: -1;
+        animation: rotate 4s linear infinite;
+        opacity: 0.7;
+    }
+
+    @keyframes rotate {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+    /* Project Card Hover Border */
+    .project-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .project-card::after {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            var(--accent-color), 
+            var(--bg-dark),
+            var(--accent-color));
+        z-index: -1;
+        border-radius: 12px;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    .project-card:hover::after {
+        opacity: 0.5;
+    }
+
+    /* Section Title Underline Animation */
+    h2::after {
+        animation: underlinePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes underlinePulse {
+        0%, 100% { width: 80px; opacity: 0.8; }
+        50% { width: 120px; opacity: 1; }
+    }
+
+    /* Contact Links Border Animation */
+    .contact-links a {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-links a::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, 
+            transparent 25%, 
+            var(--accent-color) 50%, 
+            transparent 75%);
+        background-size: 400% 400%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        border-radius: 50px;
+    }
+
+    .contact-links a:hover::before {
+        opacity: 0.3;
+        animation: borderFlow 2s linear infinite;
+    }
+
         /* --- NEW THEME: Deep Indigo/Purple & Amber/Gold --- */
         :root {
           --bg-dark: #1E1A34;         /* Deep Indigo/Purple */
@@ -28,7 +142,221 @@
           --card-shadow: rgba(255, 193, 7, 0.1); /* Gold glow */
           --card-shadow-hover: rgba(255, 193, 7, 0.3);
         }
+               /* --- Enhanced Navigation Bar --- */
+               .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(30, 26, 52, 0.98) 0%, rgba(44, 42, 74, 0.98) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
 
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .logo-icon {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .logo-text {
+            color: var(--text-headings);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            background: linear-gradient(90deg, var(--accent-color), #FFD700);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-logo:hover .logo-icon {
+            transform: rotate(15deg) scale(1.1);
+            text-shadow: 0 0 15px rgba(255, 193, 7, 0.5);
+        }
+
+        .navbar-logo:hover .logo-text {
+            background: linear-gradient(90deg, #FFD700, var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .navbar-links {
+            display: flex;
+            position: relative;
+            gap: 10px;
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-light);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+
+        .link-icon {
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .link-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-underline {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .nav-link:hover {
+            color: var(--text-headings);
+        }
+
+        .nav-link:hover .link-icon {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .nav-link:hover .link-underline {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .nav-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100%;
+            background: rgba(255, 193, 7, 0.1);
+            border-radius: 8px;
+            pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+            z-index: 0;
+        }
+
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .toggle-bar {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--text-light);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .navbar-toggle.active .toggle-bar:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .navbar-toggle.active .toggle-bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .navbar-toggle.active .toggle-bar:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+
+        /* Scrolled Navbar Style */
+        .navbar.scrolled {
+            padding: 5px 0;
+            background: rgba(30, 26, 52, 0.98);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled .navbar-container {
+            padding: 8px 30px;
+        }
+
+        /* Mobile Menu */
+        @media (max-width: 992px) {
+            .navbar-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 100px 30px 30px;
+                gap: 15px;
+                transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+                z-index: 1000;
+                box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .navbar-links.active {
+                right: 0;
+            }
+
+            .nav-link {
+                width: 100%;
+                padding: 15px 20px;
+                font-size: 1.2rem;
+            }
+
+            .navbar-toggle {
+                display: flex;
+            }
+
+            .nav-highlight {
+                display: none;
+            }
+        }
+        #hero {
+    padding-top: 80px; /* Add this line to account for fixed navbar */
+    min-height: calc(100vh - 80px); /* Adjust this line */
+    /* ... rest of your existing hero styles ... */
+}
         /* Basic Reset */
         * {
           margin: 0;
@@ -781,6 +1109,43 @@
     </style>
 </head>
 <body>
+      <!-- Enhanced Navigation Bar -->
+      <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#hero" class="navbar-logo">
+                <span class="logo-icon"><i class="fas fa-code"></i></span>
+                <span class="logo-text">Ashwin Jauhary</span>
+            </a>
+            <div class="navbar-links">
+                <a href="#about" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-user"></i></span>
+                    <span class="link-text">About</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="#skills" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-laptop-code"></i></span>
+                    <span class="link-text">Skills</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="#projects" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-project-diagram"></i></span>
+                    <span class="link-text">Projects</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="#contact" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-paper-plane"></i></span>
+                    <span class="link-text">Contact</span>
+                    <span class="link-underline"></span>
+                </a>
+                <div class="nav-highlight"></div>
+            </div>
+            <div class="navbar-toggle">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </div>
+        </div>
+    </nav>
     <!-- Scroll indicator -->
     <div class="scroll-indicator"></div>
 
@@ -901,21 +1266,73 @@ Operational Excellence: Process Optimization, Financial Acumen <br>
     </section>
 
     <section id="contact">
-        <h2 class="animate__animated animate__fadeIn">Let's Build Something Together</h2>
-        <p class="animate__animated animate__fadeIn animate__delay-1s">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Reach out and let's connect!</p>
-        <div class="contact-links">
-            <a href="mailto:ashwin2431333@gmail.com" title="Email" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fas fa-envelope"></i> Email</a>
-            <a href="https://wa.me/+919555681211" title="WhatsApp" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            <a href="https://www.linkedin.com/in/ashwin-jauhary/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-linkedin"></i> LinkedIn</a>
-            <a href="https://github.com/Ashwinjauhary" target="_blank" rel="noopener noreferrer" title="GitHub" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-github"></i> GitHub</a>
-        </div>
-    </section>
+      <h2 class="animate__animated animate__fadeIn">Let's Build Something Together</h2>
+      <p class="animate__animated animate__fadeIn animate__delay-1s">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions. Reach out and let's connect!</p>
+      <div class="contact-links">
+          <a href="mailto:ashwin2431333@gmail.com" title="Email" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://wa.me/+919555681211" title="WhatsApp" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a href="https://www.linkedin.com/in/ashwin-jauhary/" target="_blank" rel="noopener noreferrer" title="LinkedIn" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="https://github.com/Ashwinjauhary" target="_blank" rel="noopener noreferrer" title="GitHub" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-github"></i> GitHub</a>
+      </div>
+  </section>
     <footer class="animate__animated animate__fadeIn animate__delay-1s">
         <p>&copy; 2025 Ashwin Jauhary <span class="location-info">Kanpur, Uttar Pradesh, India</span></p>
         <p>Crafted with <i class="fas fa-heart"></i>, fueled by Chai & Code.</p>
     </footer>
 
     <script>
+                     // Enhanced Navbar Functionality
+        const navbar = document.querySelector('.navbar');
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarLinks = document.querySelector('.navbar-links');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navHighlight = document.querySelector('.nav-highlight');
+        
+        // Mobile menu toggle
+        navbarToggle.addEventListener('click', () => {
+            navbarToggle.classList.toggle('active');
+            navbarLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navbarToggle.classList.remove('active');
+                    navbarLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Link hover effect
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (window.innerWidth > 992) {
+                    const linkRect = this.getBoundingClientRect();
+                    const navbarRect = navbar.getBoundingClientRect();
+                    
+                    navHighlight.style.width = `${linkRect.width}px`;
+                    navHighlight.style.height = `${linkRect.height}px`;
+                    navHighlight.style.transform = `translate(${linkRect.left - navbarRect.left}px, ${linkRect.top - navbarRect.top}px)`;
+                    navHighlight.style.opacity = '1';
+                }
+            });
+            
+            navbarLinks.addEventListener('mouseleave', function() {
+                if (window.innerWidth > 992) {
+                    navHighlight.style.opacity = '0';
+                }
+            });
+        });
         // Animation on scroll
         document.addEventListener('DOMContentLoaded', function() {
             const animateElements = document.querySelectorAll('.skill-category, .project-card');
