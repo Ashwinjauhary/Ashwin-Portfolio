@@ -24,7 +24,165 @@
             overflow-x: hidden;
             cursor: none;
         }
+/* Cyberpunk Navigation */
+/* Navigation Styles from Index */
+.navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(90deg, rgba(30, 26, 52, 0.98) 0%, rgba(44, 42, 74, 0.98) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        z-index: 1000;
+        border-bottom: 1px solid rgba(255, 193, 7, 0.15);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+        transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
 
+    .navbar-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        transition: all 0.4s ease;
+    }
+
+    .logo-icon {
+        color: var(--accent-color);
+        font-size: 1.8rem;
+        transition: all 0.3s ease;
+    }
+
+    .logo-text {
+        color: var(--text-headings);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        background: linear-gradient(90deg, var(--accent-color), #FFD700);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        transition: all 0.3s ease;
+    }
+
+    .navbar-links {
+        display: flex;
+        position: relative;
+        gap: 10px;
+    }
+
+    .nav-link {
+        position: relative;
+        color: var(--text-light);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 1.05rem;
+        text-decoration: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        overflow: hidden;
+    }
+
+    .nav-link.active {
+        background: rgba(255, 193, 7, 0.1);
+    }
+
+    .link-icon {
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+    }
+
+    .link-text {
+        position: relative;
+        z-index: 1;
+    }
+
+    .link-underline {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--accent-color);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    .nav-link:hover .link-underline {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    .navbar-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 30px;
+        height: 21px;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .toggle-bar {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background-color: var(--text-light);
+        border-radius: 3px;
+        transition: all 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 992px) {
+        .navbar-links {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 100px 30px 30px;
+            gap: 15px;
+            transition: all 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+            z-index: 1000;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar-links.active {
+            right: 0;
+        }
+
+        .nav-link {
+            width: 100%;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+        }
+
+        .navbar-toggle {
+            display: flex;
+        }
+
+        .nav-highlight {
+            display: none;
+        }
+    }
         /* Custom Cursor Styles */
         .custom-cursor {
             position: fixed;
@@ -297,9 +455,89 @@
             background: var(--neon-accent);
             box-shadow: var(--glow);
         }
+        /* Footer */
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        margin-top: 50px;
+        border-top: 1px solid var(--border-color);
+        color: var(--text-darker);
+        font-size: 1rem;
+        background-color: var(--bg-dark);
+        position: relative;
+      }
+
+      footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+      }
+
+      footer .fa-heart {
+          color: var(--accent-color);
+          margin: 0 5px;
+          animation: heartbeat 1.5s infinite;
+      }
+
+      @keyframes heartbeat {
+        0% { transform: scale(1); }
+        25% { transform: scale(1.1); }
+        50% { transform: scale(1); }
+        75% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
+
+      footer .location-info {
+          display: block;
+          margin-top: 5px;
+          font-size: 0.9em;
+          color: var(--text-darker);
+      }
+
     </style>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#hero" class="navbar-logo">
+                <span class="logo-icon"><i class="fas fa-code"></i></span>
+                <span class="logo-text">Ashwin Jauhary</span>
+            </a>
+            <div class="navbar-links">
+                <a href="index.html" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-home"></i></span>
+                    <span class="link-text">Home</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="#certificates" class="nav-link active">
+                    <span class="link-icon"><i class="fas fa-certificate"></i></span>
+                    <span class="link-text">Certificates</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="index.html#projects" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-project-diagram"></i></span>
+                    <span class="link-text">Projects</span>
+                    <span class="link-underline"></span>
+                </a>
+                <a href="index.html#contact" class="nav-link">
+                    <span class="link-icon"><i class="fas fa-paper-plane"></i></span>
+                    <span class="link-text">Contact</span>
+                    <span class="link-underline"></span>
+                </a>
+                <div class="nav-highlight"></div>
+            </div>
+            <div class="navbar-toggle">
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+                <span class="toggle-bar"></span>
+            </div>
+        </div>
+    </nav>
+    
     <div class="custom-cursor"></div>
     <canvas class="matrix-rain" id="matrixCanvas"></canvas>
     <div class="particles" id="particles"></div>
@@ -442,8 +680,38 @@
             </div>
         </div>
     </section>
+    <footer class="animate__animated animate__fadeIn animate__delay-1s">
+        <p>&copy; 2025 Ashwin Jauhary <span class="location-info">Kanpur, Uttar Pradesh, India</span></p>
+        <p>Crafted with <i class="fas fa-heart"></i>, fueled by Chai & Code.</p>
 
+    </footer>
     <script>
+    // Navigation Toggle from Index
+    const navbarToggle = document.querySelector('.navbar-toggle');
+    const navbarLinks = document.querySelector('.navbar-links');
+    
+    navbarToggle.addEventListener('click', () => {
+        navbarToggle.classList.toggle('active');
+        navbarLinks.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking links
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.innerWidth <= 992) {
+                navbarToggle.classList.remove('active');
+                navbarLinks.classList.remove('active');
+            }
+        });
+    });
+
+    // Active link highlighting
+    const currentPage = window.location.pathname.split('/').pop();
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if(link.href.endsWith(currentPage)) {
+            link.classList.add('active');
+        }
+    });
         // Custom Cursor Logic
         const cursor = document.querySelector('.custom-cursor');
         let mouseX = 0;
