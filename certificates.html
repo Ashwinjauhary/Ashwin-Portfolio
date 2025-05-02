@@ -498,6 +498,93 @@
           color: var(--text-darker);
       }
 
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .certificates-container {
+        grid-template-columns: 1fr;
+        padding: 2rem 5%;
+        gap: 1rem;
+    }
+
+    .certificate-card {
+        width: 90%;
+        margin: 1rem auto;
+    }
+
+    .certificate-image {
+        height: 150px;
+    }
+
+    .certificate-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .view-button {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .section-header h2 {
+        font-size: 2rem;
+        padding: 2rem 0;
+    }
+
+    .certificate-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .navbar-logo .logo-text {
+        font-size: 1.2rem;
+    }
+
+    .nav-link {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+
+    footer {
+        padding: 20px 10px;
+        font-size: 0.9rem;
+    }
+
+    footer .location-info {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-card {
+        width: 95%;
+    }
+
+    .certificate-info {
+        padding: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .navbar-container {
+        padding: 10px 15px;
+    }
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+    .custom-cursor,
+    .matrix-rain,
+    .particles {
+        display: none !important;
+    }
+
+    .certificate-card:hover {
+        transform: none;
+        filter: none;
+    }
+}
     </style>
 </head>
 <body>
@@ -819,6 +906,20 @@
                 card.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
             });
         });
+        // Add this to the existing JavaScript
+// Touch device detection
+if ('ontouchstart' in window) {
+    document.documentElement.classList.add('touch-device');
+}
+
+// Update card hover effects for mobile
+document.querySelectorAll('.certificate-card').forEach(card => {
+    card.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            card.classList.toggle('mobile-active');
+        }
+    });
+});
     </script>
 </body>
 </html>
