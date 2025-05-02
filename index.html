@@ -1167,7 +1167,70 @@
           footer { padding: 30px 15px; font-size: 0.9rem; }
           .back-to-top { width: 40px; height: 40px; font-size: 1.2rem; bottom: 20px; right: 20px; }
       }
+      .easter-egg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(30, 26, 52, 0.95);
+        backdrop-filter: blur(10px);
+        z-index: 99999;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        animation: eggEntrance 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    @keyframes eggEntrance {
+        0% { transform: scale(0) rotate(-360deg); opacity: 0; }
+        100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+
+    .easter-content {
+        background: var(--bg-medium);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 2px solid var(--accent-color);
+        box-shadow: 0 0 30px rgba(255, 193, 7, 0.3);
+        max-width: 600px;
+        position: relative;
+        text-align: center;
+    }
+
+    .egg-gif {
+        width: 200px;
+        border-radius: 10px;
+        margin: 1rem 0;
+        border: 2px solid var(--accent-color);
+    }
+
+    .egg-text {
+        font-family: monospace;
+        color: var(--accent-color);
+        font-size: 0.8rem;
+        line-height: 1.2;
+        margin: 1rem 0;
+    }
+
+    .close-egg {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 2rem;
+        cursor: pointer;
+        color: var(--accent-color);
+        transition: all 0.3s ease;
+    }
+
+    .close-egg:hover {
+        transform: rotate(90deg) scale(1.2);
+    }
+    .secret_button {
+      background-color: #FFA000;
+    }
     </style>
+
 </head>
 <body>
   <div class="custom-cursor"></div>
@@ -1194,7 +1257,7 @@
                     <span class="link-text">Projects</span>
                     <span class="link-underline"></span>
                 </a>
-                <a href="#contact" class="nav-link">
+                <a href="contact.html" class="nav-link">
                     <span class="link-icon"><i class="fas fa-paper-plane"></i></span>
                     <span class="link-text">Contact</span>
                     <span class="link-underline"></span>
@@ -1204,6 +1267,7 @@
                      <span class="link-text">Certificates</span>
                      <span class="link-underline"></span>
                  </a>
+                 
 
                 <div class="nav-highlight"></div>
             </div>
@@ -1331,6 +1395,17 @@
                     <a href="#" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
                 </div>
             </div>
+            <div class="project-card">
+              <img src="Screenshot 2025-05-02 190408.png" alt="image">
+              <h3>Portfolio Website</h3>
+              <p>This website is a portfolio showcasing the work and skills of Ashwin Jauhary. Ashwin is a BCA student at PSIT Kanpur, and the website serves as a platform to demonstrate his abilities in crafting digital experiences and solving problems with code. The site highlights his journey as an enthusiastic learner and future innovator in the field of technology.</p>
+              <div class="project-tags">
+                  <span>HTML</span> <span>CSS</span> <span>JAVA SCRIPT</span>
+              </div>
+              <div class="project-links">
+                  <a href="https://ashwinjauhary.github.io/Ashwin-Portfolio/" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> GitHub</a>
+              </div>
+          </div>
         </div>
     </section>
 
@@ -1344,12 +1419,30 @@
           <a href="https://github.com/Ashwinjauhary" target="_blank" rel="noopener noreferrer" title="GitHub" class="animate__animated animate__fadeIn animate__delay-2s"><i class="fab fa-github"></i> GitHub</a>
       </div>
   </section>
+  <div id="easter-egg" class="easter-egg">
+  <div class="easter-content">
+      <span class="close-egg">×</span>
+      <h3>Secret Developer Mode Activated! 🎮</h3>
+      <p>Here's your reward:</p>
+      <div class="egg-content">
+         <center> <img src="https://media.giphy.com/media/LmNwrBhejkK9EFP504/giphy.gif" alt="Coding Cat" class="egg-gif"></center>
+          <p class="egg-text">Congratulations! You found the<br>Secret shortcut!<br>
+             /\_/\  <br>
+            ( o.o ) <br>
+             > ^ <  <br>
+            </p>
+      </div>
+      
+  </div>
+</div>
     <footer class="animate__animated animate__fadeIn animate__delay-1s">
         <p>&copy; 2025 Ashwin Jauhary <span class="location-info">Kanpur, Uttar Pradesh, India</span></p>
         <p>Crafted with <i class="fas fa-heart"></i>, fueled by Chai & Code.</p>
-
     </footer>
-
+   
+   <center> <div class="secret_button">
+    <button onclick="showShortcut()">Try A+J</button>
+  </div></center>
     <script>
       // Add this cursor JavaScript before closing body tag
         // Custom Cursor Logic
@@ -1521,6 +1614,42 @@
                 });
             });
         });
+        // Easter Egg Functionality
+    let aPressed = false;
+    let jPressed = false;
+    const easterEgg = document.getElementById('easter-egg');
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === 'a') aPressed = true;
+        if (e.key.toLowerCase() === 'j') jPressed = true;
+        
+        if (aPressed && jPressed) {
+            easterEgg.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    });
+
+    document.addEventListener('keyup', (e) => {
+        if (e.key.toLowerCase() === 'a') aPressed = false;
+        if (e.key.toLowerCase() === 'j') jPressed = false;
+    });
+
+    // Close Easter Egg
+    document.querySelector('.close-egg').addEventListener('click', () => {
+        easterEgg.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close when clicking outside
+    easterEgg.addEventListener('click', (e) => {
+        if (e.target === easterEgg) {
+            easterEgg.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    function showShortcut() {
+      alert('{ Developers love shortcuts! Try.. (A+J) }');
+    }
     </script>
 </body>
 </html>
