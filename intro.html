@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction | Ashwin Jauhary</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Define CSS variables for colors */
+    :root {
+      --bg-dark: #1E1A34;
+      --accent: #FFC107;
+      --accent-hover: #FFA000;
+      --text-light: #F0EFEF;
+    }
+
+    /* Basic body styling */
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      font-family: 'Lato', sans-serif;
+      margin: 0;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      display: flex; /* Use flexbox to center content */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      min-height: 100vh; /* Ensure body takes at least full viewport height */
+      padding: 20px; /* Add some padding */
+      box-sizing: border-box; /* Include padding in element's total width and height */
+    }
+
+    /* Container for the video and overlay */
+    .video-container {
+      position: relative;
+      width: 50%; /* Take full width of its flex container */
+      max-width: 800px; /* Set a max width for larger screens */
+      /* Remove padding-bottom as video will control aspect ratio */
+      overflow: hidden;
+      border-radius: 10px; /* Apply rounded corners to the container */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    }
+
+    /* Style for the video element */
+    #introVideo {
+      display: block; /* Remove extra space below video */
+      width: 50%; /* Make video take full width of container */
+      height: auto; /* Maintain aspect ratio */
+      /* Remove fixed positioning and explicit dimensions */
+      /* position: fixed; top: 15%; left: 40%; height: 70%; object-fit: cover; */
+    }
+
+    /* Overlay style */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.6); /* Slightly darker overlay for better text contrast */
+      color: white;
+      padding: 20px;
+      box-sizing: border-box; /* Include padding in element's total width and height */
+      transition: opacity 0.3s ease; /* Smooth transition for hiding/showing */
+    }
+
+    /* Style for the play button */
+    .play-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid white;
+      color: white;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem; /* Adjust font size for button */
+    }
+
+    /* Hover effect for the play button */
+    .play-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.05);
+    }
+
+    /* Responsive adjustments for smaller screens */
+    @media (max-width: 768px) {
+      .overlay h1 {
+        font-size: 2rem; /* Decrease heading size on mobile */
+      }
+      .overlay p {
+        font-size: 1rem; /* Decrease paragraph size on mobile */
+      }
+      .play-btn {
+        padding: 10px 20px; /* Adjust button padding */
+        font-size: 0.9rem; /* Adjust button font size */
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="video-container">
+<center>    <video id="introVideo" src="Untitled design.mp4" playsinline></video></center>
+    <div class="overlay" id="videoOverlay">
+      <h1 class="text-4xl md:text-5xl font-bold">Hello, I'm Ashwin!</h1>
+      <p class="mt-4 text-lg md:text-xl max-w-xl">Welcome to my personal introduction. Click below to watch my short video and learn more about me.</p>
+      <button class="play-btn" id="playButton">▶ Watch Intro</button>
+    </div>
+  </div>
+
+  <script>
+    // Get references to the video, overlay, and play button elements
+    const video = document.getElementById('introVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const playButton = document.getElementById('playButton');
+
+    // Add event listener to the play button
+    playButton.addEventListener('click', () => {
+      // Play the video
+      video.play();
+      // Hide the overlay
+      overlay.style.opacity = '0'; // Use opacity for smooth transition
+      overlay.style.pointerEvents = 'none'; // Disable clicks on the hidden overlay
+    });
+
+    // Add event listener for when the video ends
+    video.addEventListener('ended', () => {
+      // Show the overlay again
+      overlay.style.opacity = '1';
+      overlay.style.pointerEvents = 'auto'; // Enable clicks on the visible overlay
+    });
+
+    // Optional: Add event listener to show overlay if video is paused manually
+    video.addEventListener('pause', () => {
+        if (!video.ended) { // Only show overlay if not at the end
+            overlay.style.opacity = '1';
+            overlay.style.pointerEvents = 'auto';
+        }
+    });
+
+  </script>
+</body>
+</html>

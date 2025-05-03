@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ashwin Jauhary - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* --- Consolidated CSS --- */
+        :root {
+            /* Using the last defined set of variables, adjust as needed */
+            --bg-dark: #1E1A34;
+            --bg-medium: #2C2A4A;
+            --text-light: #F0EFEF;
+            --text-headings: #FFFFFF;
+            --accent-color: #FFC107;
+            --accent-hover: #FFA000;
+            --border-color: #4A4766;
+            --card-shadow: rgba(255, 193, 7, 0.1);
+            --cursor-size: 20px;
+            --cursor-trail-color: rgba(255, 193, 7, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            cursor: none; /* Custom cursor will be visible */
+            perspective: 1000px;
+        }
+
+        /* Background Gradient Animation */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(-45deg, #1E1A34, #2C2A4A, #3A375F, #4A4766);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- Consolidated Navbar --- */
+        #navbar {
+            position: fixed;
+            width: 100%;
+            background: linear-gradient(90deg, rgba(30, 26, 52, 0.98) 0%, rgba(44, 42, 74, 0.98) 100%);
+            backdrop-filter: blur(12px);
+            padding: 1rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.15);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        #navbar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        #navbar a {
+            color: var(--text-light);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        #navbar a:hover {
+            color: var(--accent-color);
+        }
+
+        #navbar a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        #navbar a:hover::after {
+            width: 100%;
+        }
+
+        /* --- Consolidated Sections (Reduced Spacing) --- */
+        .section {
+            /* Reduced vertical padding */
+            padding: 60px 2rem; /* Changed from 100px */
+            /* Removed min-height: 100vh to allow sections to be closer */
+            min-height: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            /* Entrance Animation */
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+        /* Keep the .visible class for animation */
+        .section.visible {
+             opacity: 1;
+             transform: translateY(0);
+         }
+
+        /* --- Consolidated Hero (Adjusted Height) --- */
+        .hero {
+             /* Ensure hero still has enough height if needed */
+             min-height: 80vh; /* Adjust as needed, or remove if padding is enough */
+             text-align: center;
+             max-width: 800px;
+             margin: 0 auto;
+             position: relative;
+             z-index: 1;
+             display: flex;
+             flex-direction: column;
+             align-items: center;
+             justify-content: center;
+             overflow: hidden;
+         }
+
+        .profile-img {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin-bottom: 2rem;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 5px 25px rgba(0,0,0, 0.3);
+            animation: pulse 2s infinite, float 4s ease-in-out infinite;
+            transform: translateZ(50px);
+            transition: transform 0.3s ease;
+        }
+        .profile-img:hover {
+             /* Optional hover effect */
+             /* transform: translateZ(80px) rotateY(15deg); */
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 193, 7, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateZ(50px); }
+            50% { transform: translateY(-20px) translateZ(70px); }
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            color: var(--text-headings);
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(255, 193, 7, 0.3);
+            transform: translateZ(30px);
+        }
+
+        /* --- Consolidated Social Links --- */
+        .social-links {
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: translateY(-3px);
+        }
+
+        .social-links a::after {
+             content: '';
+             position: absolute;
+             bottom: 0;
+             left: 0;
+             width: 100%;
+             height: 2px;
+             background: var(--accent-color);
+             transform: scaleX(0);
+             transition: transform 0.3s ease;
+         }
+
+        .social-links a:hover::after {
+             transform: scaleX(1);
+         }
+
+        /* --- Consolidated Projects Grid --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            padding: 2rem;
+            transform-style: preserve-3d;
+        }
+
+        .project-card {
+            background: rgba(44, 42, 74, 0.8);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transform: translateZ(20px);
+            transform-style: preserve-3d;
+        }
+
+        .project-card:hover {
+             transform: translateZ(50px) rotateX(5deg) rotateY(5deg);
+             box-shadow: 0 15px 35px var(--card-shadow);
+             border-color: var(--accent-color);
+         }
+
+        /* Shimmer Effect */
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 193, 7, 0.1),
+                transparent
+            );
+            transition: 0.6s;
+        }
+        .project-card:hover::before {
+             left: 100%;
+         }
+
+        /* Mouse Position Glow Effect */
+         .project-card::after {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             width: 100%;
+             height: 100%;
+             background: radial-gradient(circle at var(--x) var(--y),
+                       rgba(255, 193, 7, 0.1) 0%,
+                       transparent 70%);
+             pointer-events: none;
+             opacity: 0;
+             transition: opacity 0.3s ease;
+         }
+         .project-card:hover::after {
+             opacity: 1;
+         }
+
+        /* --- Consolidated Timeline --- */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            margin: 4rem 0;
+            background: var(--bg-medium);
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.6s ease;
+            transform-style: preserve-3d;
+        }
+         .timeline-item.visible {
+             opacity: 1;
+             transform: translateX(0);
+         }
+        .timeline-item:hover {
+             transform: translateZ(20px);
+         }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -20px;
+            top: 2rem;
+            width: 40px;
+            height: 40px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        /* --- Consolidated Contact Form --- */
+        #contact-form {
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: rgba(44, 42, 74, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(5px);
+            transform: translateZ(30px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* Screen Reader Only Class */
+        .sr-only {
+             position: absolute;
+             width: 1px;
+             height: 1px;
+             padding: 0;
+             margin: -1px;
+             overflow: hidden;
+             clip: rect(0, 0, 0, 0);
+             white-space: nowrap;
+             border-width: 0;
+         }
+
+
+        input, textarea {
+            padding: 1rem;
+            background: rgba(30, 26, 52, 0.3);
+            border: 2px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            transform: translateZ(10px);
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 15px rgba(255, 193, 7, 0.3);
+            transform: translateZ(20px);
+        }
+
+        button[type="submit"] {
+            background: var(--accent-color);
+            color: var(--bg-dark);
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        button[type="submit"]:hover {
+            background: var(--accent-hover);
+            transform: translateY(-3px);
+        }
+
+        /* --- Consolidated Footer (Added Spacing) --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border-top: 1px solid var(--border-color);
+            margin-top: 60px; /* Added margin-top for spacing */
+        }
+
+        /* --- Consolidated Cube (Optional Visual Element) --- */
+        .cube-container {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 5%;
+            transform-style: preserve-3d;
+            animation: cubeRotate 25s infinite linear;
+            z-index: -1;
+            pointer-events: none;
+            will-change: transform;
+        }
+
+        .cube {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+        }
+
+        .cube-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 193, 7, 0.05);
+            border: 1px solid rgba(255, 193, 7, 0.1);
+            transform-style: preserve-3d;
+            backdrop-filter: blur(2px);
+        }
+
+        .front { transform: translateZ(75px); }
+        .back { transform: translateZ(-75px) rotateY(180deg); }
+        .right { transform: rotateY(90deg) translateZ(75px); }
+        .left { transform: rotateY(-90deg) translateZ(75px); }
+        .top { transform: rotateX(90deg) translateZ(75px); }
+        .bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+        @keyframes cubeRotate {
+            0% { transform: rotateX(0) rotateY(0) rotateZ(0); }
+            100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+        }
+
+        /* --- Consolidated & Corrected Cursor --- */
+         .custom-cursor {
+            position: fixed;
+            width: var(--cursor-size);
+            height: var(--cursor-size);
+            border: 2px solid var(--accent-color);
+            border-radius: 50%;
+            pointer-events: none;
+            /* Use left/top, transform handles centering */
+            left: 0;
+            top: 0;
+            transform: translate(-50%, -50%);
+            transition:
+                width 0.2s ease,
+                height 0.2s ease,
+                background-color 0.2s ease,
+                /* Keep transform transition fast for main cursor movement */
+                transform 0.15s ease-out;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            will-change: left, top, width, height; /* Optimize transitions - left/top used by JS */
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+
+        /* States for cursor - Ensure transform includes centering */
+        .cursor-scale {
+             transform: translate(-50%, -50%) scale(1.5); /* Apply scale with centering */
+         }
+        .cursor-active {
+             background-color: rgba(255, 193, 7, 0.3);
+             border-color: transparent;
+         }
+
+        .cursor-trail {
+            position: absolute; /* Use absolute positioning for page coords */
+            width: 6px;
+            height: 6px;
+            background: var(--cursor-trail-color);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: trailFade 0.6s forwards;
+            z-index: 9998;
+            will-change: opacity, transform;
+            /* Position set by JS using left/top */
+        }
+
+        .cursor-click {
+             position: absolute; /* Use absolute positioning for page coords */
+             width: 40px;
+             height: 40px;
+             border: 2px solid var(--accent-color);
+             border-radius: 50%;
+             animation: clickEffect 0.5s ease-out forwards;
+             pointer-events: none;
+             z-index: 9997;
+             transform: translate(-50%, -50%); /* Center the click effect */
+             /* Position set by JS using left/top */
+         }
+
+        @keyframes trailFade {
+            0% { opacity: 0.8; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0.2); }
+        }
+
+        @keyframes clickEffect {
+            0% { opacity: 1; transform: translate(-50%, -50%) scale(0); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2); }
+        }
+
+        /* --- Consolidated Particles (Static background type) --- */
+         .particles {
+             position: fixed;
+             width: 100%;
+             height: 100%;
+             top: 0; left: 0;
+             pointer-events: none;
+             z-index: -1;
+             overflow: hidden;
+         }
+
+         .particle {
+             position: absolute;
+             background: var(--accent-color);
+             border-radius: 50%;
+         }
+
+        /* --- Consolidated Progress Bar (Used in Roadmap) --- */
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 1rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
+            width: 0;
+            border-radius: 4px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* --- Media Queries --- */
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 1rem; /* Adjusted padding */
+            }
+            #navbar ul {
+                 gap: 1rem;
+             }
+             #navbar a {
+                 padding: 0.5rem 1rem;
+             }
+            .timeline-container {
+                 padding: 0 1rem;
+             }
+            .timeline-item::before {
+                left: -15px;
+                width: 30px; height: 30px;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+             .profile-img {
+                 width: 180px; height: 180px;
+             }
+            .cube-container {
+                 display: none;
+             }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube-container">
+        <div class="cube">
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
+    </div>
+
+    <div class="custom-cursor"></div>
+    <div class="particles"></div>
+
+    <nav id="navbar">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero section">
+        <img src="ASHWIN.jpg" alt="Ashwin Jauhary" class="profile-img">
+        <h1>Ashwin Jauhary</h1>
+        <p>Full Stack Developer | AI Enthusiast</p>
+        <div class="social-links">
+            <a href="https://github.com/ashwinjauhary" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/ashwinjauhary" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/ashwinjauhary" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            </div>
+    </section>
+
+    <section id="roadmap" class="section">
+        <h2>Development Roadmap 🚀</h2>
+        <div class="timeline-container">
+            </div>
+    </section>
+
+    <section id="contact" class="section">
+        <h2>Your Suggestion👇</h2>
+        <form id="contact-form" action="https://formspree.io/f/mpwdpdre" method="POST">
+            <label for="name" class="sr-only">Name</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+            <label for="message" class="sr-only">Message</label>
+            <textarea id="message" name="message" placeholder="Your Message" required rows="5"></textarea>
+
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ashwin Jauhary. All rights reserved.</p> </footer>
+
+    <script>
+        // --- Consolidated & Corrected JavaScript ---
+
+        // --- Cursor Logic (Corrected) ---
+        const cursor = document.querySelector('.custom-cursor');
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let targetX = mouseX;
+        let targetY = mouseY;
+        let trailDelayCounter = 0;
+        const trailFrequency = 2; // Create trail every N frames
+        const dampening = 0.15; // Smoothing factor (0.1 = smoother, 0.5 = less smooth)
+
+        function updateCursorPosition() {
+            // Smoothly interpolate cursor position towards the target
+            mouseX += (targetX - mouseX) * dampening;
+            mouseY += (targetY - mouseY) * dampening;
+
+            // Use left/top for positioning the fixed cursor element
+            // The CSS transform: translate(-50%, -50%) handles the centering
+            cursor.style.left = `${mouseX}px`;
+            cursor.style.top = `${mouseY}px`;
+
+            requestAnimationFrame(updateCursorPosition);
+        }
+
+        document.addEventListener('mousemove', (e) => {
+            // Update target position based on client coordinates (viewport)
+            targetX = e.clientX;
+            targetY = e.clientY;
+
+            // Create trails less frequently
+            if (trailDelayCounter % trailFrequency === 0) {
+                const trail = document.createElement('div');
+                trail.className = 'cursor-trail';
+                // Use pageX/pageY for trails to position correctly on scrolled pages
+                // Adjust for trail size to center it
+                trail.style.left = `${e.pageX - 3}px`;
+                trail.style.top = `${e.pageY - 3}px`;
+                // Append to body to ensure correct absolute positioning context
+                document.body.appendChild(trail);
+                setTimeout(() => trail.remove(), 600); // Match animation duration
+            }
+            trailDelayCounter++;
+        });
+
+        document.addEventListener('click', (e) => {
+            const clickEffect = document.createElement('div');
+            clickEffect.className = 'cursor-click';
+            // Use pageX/pageY for click effects to position correctly on scrolled pages
+            // The CSS transform handles centering
+            clickEffect.style.left = `${e.pageX}px`;
+            clickEffect.style.top = `${e.pageY}px`;
+            // Append to body
+            document.body.appendChild(clickEffect);
+            setTimeout(() => clickEffect.remove(), 500); // Match animation duration
+        });
+
+        // Hover Effects for Cursor
+        const interactiveElements = document.querySelectorAll('a, button, .project-card, .timeline-item');
+
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.classList.add('cursor-scale', 'cursor-active');
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-scale', 'cursor-active');
+            });
+        });
+
+        // Start the smooth cursor animation loop only if the cursor exists
+        if (cursor) {
+             updateCursorPosition();
+        } else {
+            console.error("Custom cursor element not found!");
+        }
+
+        // --- Particle Logic (Div-based example) ---
+        const particlesContainer = document.querySelector('.particles');
+        const numParticles = 50; // Number of particles
+
+        function createParticles() {
+            if (!particlesContainer) return; // Exit if container not found
+            particlesContainer.innerHTML = ''; // Clear existing particles if function is called again
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle'; // Use the .particle class for base styles
+                const size = Math.random() * 4 + 2; // Random size between 2px and 6px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1; // Random opacity
+                // Define a base float animation in CSS if not already present or add it here:
+                 // Example: particle.style.animation = `float ${Math.random() * 6 + 4}s infinite ease-in-out alternate`;
+                 // Assuming a 'float' keyframe animation exists in CSS
+                 particle.style.animationName = 'float'; // Assign animation name
+                 particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                 particle.style.animationTimingFunction = 'ease-in-out';
+                 particle.style.animationIterationCount = 'infinite';
+                 particle.style.animationDirection = 'alternate'; // Makes it go up and down
+                 particle.style.animationDelay = `${Math.random() * 4}s`; // Random delay
+                particlesContainer.appendChild(particle);
+            }
+        }
+        // Add float keyframes to CSS if missing, or define here if preferred.
+        // Assuming it's in CSS based on previous code.
+
+
+        // --- 3D Card Tilt Effect & Glow Effect ---
+        const tiltableCards = document.querySelectorAll('.project-card');
+
+        tiltableCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -7; // Max rotation 7 degrees
+                const rotateY = ((x - centerX) / centerX) * 7;  // Max rotation 7 degrees
+
+                card.style.transform = `perspective(1000px) translateZ(20px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+
+            card.addEventListener('mouseleave', () => {
+                 card.style.transform = `perspective(1000px) translateZ(20px) rotateX(0deg) rotateY(0deg)`;
+            });
+        });
+
+
+        // --- Data Definitions ---
+        const roadmapData = [
+            {
+                "title": "Advanced Frontend Mastery",
+                "date": "2025",
+                "status": "In Progress",
+                "progress": 65,
+                "tasks": [
+                    "Advanced CSS Grid/Flexbox layouts",
+                    "React Component Architecture",
+                    "State Management with Redux",
+                    "Web Performance Optimization",
+                    "PWA Development"
+                ],
+                "icon": "fab fa-react",
+                "certification": "React Certification (Udemy)"
+            },
+            {
+                "title": "MERN Stack Development",
+                "date": "2025",
+                "status": "Planned",
+                "progress": 20,
+                "tasks": [
+                    "Node.js & Express.js Fundamentals",
+                    "MongoDB Database Design",
+                    "REST API Development",
+                    "JWT Authentication",
+                    "Full Stack Project Integration"
+                ],
+                "icon": "fas fa-layer-group",
+                "projects": ["E-commerce Platform", "Social Media Dashboard"]
+            },
+            {
+                "title": "Python & GenAI Fundamentals",
+                "date": "2025",
+                "status": "Upcoming",
+                "progress": 10,
+                "tasks": [
+                    "Python Programming Essentials",
+                    "LLM Integration (GPT-3/4)",
+                    "AI-powered Web Features",
+                    "Data Analysis with Pandas",
+                    "Basic Machine Learning Concepts"
+                ],
+                "icon": "fas fa-robot",
+                "tools": ["TensorFlow", "HuggingFace", "LangChain"]
+            },
+            {
+                "title": "C++ & System Programming",
+                "date": "2025",
+                "status": "Planned",
+                "progress": 5,
+                "tasks": [
+                    "Object-Oriented Programming",
+                    "Memory Management",
+                    "Algorithm Optimization",
+                    "Game Development Basics",
+                    "Cross-Platform Development"
+                ],
+                "icon": "fas fa-microchip",
+                "projects": ["Console Applications", "Simple Game Engine"]
+            },
+            {
+                "title": "AI-Enhanced Full Stack",
+                "date": "2025",
+                "status": "Future",
+                "progress": 0,
+                "tasks": [
+                    "AI-Powered Chat Interfaces",
+                    "Predictive Analytics Integration",
+                    "Smart Recommendation Systems",
+                    "Automated Testing with AI",
+                    "Deployment on Cloud Platforms"
+                ],
+                "icon": "fas fa-brain",
+                "cloud": ["AWS", "Google Cloud", "Azure"]
+            },
+            {
+                "title": "Open Source & Community",
+                "date": "2025",
+                "status": "Future",
+                "progress": 0,
+                "tasks": [
+                    "Contribute to React Ecosystem",
+                    "Python Package Development",
+                    "AI Model Fine-Tuning",
+                    "Technical Blog Writing",
+                    "Hackathon Participation"
+                ],
+                "icon": "fas fa-hands-helping"
+            }
+        ];
+        const projectsData = [
+            {
+                title: "Portfolio Website",
+                description: "This website is a portfolio showcasing the work and skills of Ashwin Jauhary. Ashwin is a BCA student at PSIT Kanpur, and the website serves as a platform to demonstrate his abilities in crafting digital experiences and solving problems with code. The site highlights his journey as an enthusiastic learner and future innovator in the field of technology.",
+                tech: ["HTML", ",", "CSS", ",", "JavaScript"], // Note: Commas treated as tech items here
+                link: "https://ashwinjauhary.github.io/Ashwin-Portfolio/"
+            }
+            // Add more projects here if needed
+        ];
+
+        // --- DOM Population & Initialization ---
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Smooth Scroll for Navbar Links
+            document.querySelectorAll('#navbar a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        // Calculate offset if navbar is fixed and overlaps content
+                        const navbarHeight = document.getElementById('navbar')?.offsetHeight || 0;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+
+                        window.scrollTo({
+                             top: offsetPosition,
+                             behavior: "smooth"
+                        });
+                        // Fallback for simpler scroll if calculation fails
+                        // targetElement.scrollIntoView({
+                        //     behavior: 'smooth',
+                        //     block: 'start'
+                        // });
+                    }
+                });
+            });
+
+            // Populate Roadmap
+            const timelineContainer = document.querySelector('.timeline-container');
+            if (timelineContainer) {
+                roadmapData.forEach(item => {
+                    const timelineItem = document.createElement('div');
+                    timelineItem.className = 'timeline-item';
+
+                    let innerHTML = `<h3>${item.title || ''}</h3>`;
+                    innerHTML += `<div class="timeline-meta">`;
+                    if (item.date) innerHTML += `<span class="date">${item.date}</span>`;
+                    if (item.status) innerHTML += `<span class="status">${item.status}</span>`;
+                    innerHTML += `</div>`;
+                    if (item.icon) innerHTML += `<i class="${item.icon} timeline-icon" style="margin-left: 10px; opacity: 0.7;"></i>`;
+                    if (item.description) innerHTML += `<p>${item.description}</p>`;
+                    if (item.tasks && item.tasks.length > 0) {
+                        innerHTML += `<ul>${item.tasks.map(task => `<li>${task}</li>`).join('')}</ul>`;
+                    }
+                    if (typeof item.progress === 'number' && item.progress >= 0) {
+                        innerHTML += `
+                        <div class="progress-bar" aria-label="Progress: ${item.progress}%">
+                            <div class="progress-fill" style="width: ${item.progress}%"></div>
+                        </div>`;
+                    }
+                     if (item.certification) innerHTML += `<p style="margin-top: 0.5rem;"><small>Certification: ${item.certification}</small></p>`;
+                     if (item.projects && item.projects.length > 0) innerHTML += `<p style="margin-top: 0.5rem;"><small>Projects: ${item.projects.join(', ')}</small></p>`;
+                     if (item.tools && item.tools.length > 0) innerHTML += `<p style="margin-top: 0.5rem;"><small>Tools: ${item.tools.join(', ')}</small></p>`;
+                     if (item.cloud && item.cloud.length > 0) innerHTML += `<p style="margin-top: 0.5rem;"><small>Cloud: ${item.cloud.join(', ')}</small></p>`;
+
+                    timelineItem.innerHTML = innerHTML;
+                    timelineContainer.appendChild(timelineItem);
+                });
+            } else {
+                console.error("Timeline container not found.");
+            }
+
+            // Populate Projects
+            const projectsGrid = document.querySelector('#projects .projects-grid');
+             if (projectsGrid) {
+                 projectsData.forEach(project => {
+                     const projectCard = document.createElement('div');
+                     projectCard.className = 'project-card';
+
+                     let techStackHTML = '';
+                     if (project.tech && project.tech.length > 0) {
+                         // Filter out commas if they exist as separate strings and trim whitespace
+                         const cleanTech = project.tech
+                            .map(t => t.trim())
+                            .filter(t => t && t !== ',');
+                         techStackHTML = cleanTech.map(tech => `<span>${tech}</span>`).join(' ');
+                     }
+
+                     projectCard.innerHTML = `
+                        <h3>${project.title || 'Untitled Project'}</h3>
+                        <p>${project.description || 'No description available.'}</p>
+                        ${techStackHTML ? `<div class="tech-stack" style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">${techStackHTML}</div>` : ''}
+                        ${project.link ? `<a href="${project.link}" class="project-link" target="_blank" rel="noopener noreferrer" style="display: inline-block; margin-top: 1rem; color: var(--accent-color); text-decoration: none;">View Project →</a>` : ''}
+                    `;
+                     projectsGrid.appendChild(projectCard);
+                 });
+             } else {
+                 console.error("Projects grid container not found.");
+             }
+
+            // Initialize Particles
+            createParticles();
+
+            // Intersection Observer for Animations
+            const observerTargetElements = document.querySelectorAll('.section, .timeline-item');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+
+                         if (entry.target.classList.contains('timeline-item')) {
+                            const progressBarFill = entry.target.querySelector('.progress-fill');
+                            if (progressBarFill) {
+                                const targetWidth = progressBarFill.style.width;
+                                progressBarFill.style.width = '0%';
+                                setTimeout(() => {
+                                     progressBarFill.style.width = targetWidth;
+                                 }, 100); // Increased delay slightly
+                            }
+                         }
+                         // observer.unobserve(entry.target); // Optional: Stop observing after visible
+                    }
+                    // else { // Optional: Remove class if it scrolls out of view
+                    //     entry.target.classList.remove('visible');
+                    // }
+                });
+            }, {
+                threshold: 0.1 // Adjust threshold as needed (0.1 means 10% visible)
+            });
+
+            observerTargetElements.forEach(el => {
+                 if(el) observer.observe(el); // Check if element exists before observing
+            });
+
+        }); // End DOMContentLoaded
+
+    </script>
+</body>
+</html>
